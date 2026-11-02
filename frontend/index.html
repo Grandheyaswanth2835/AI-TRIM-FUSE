@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101a2b">
+    <title>Trim &amp; Fuse Data Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="config.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Trim and Fuse home">
+          <span class="brand-mark">TF</span>
+          <span>Trim<span class="brand-amp">&amp;</span>Fuse</span>
+        </a>
+        <div class="topbar-right">
+          <span class="data-label"><span class="status-dot"></span>Synthetic data</span>
+          <span id="api-status" class="api-status">Connecting to API…</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">ENGINEERING DATA WORKSPACE</p>
+            <h1>Trim &amp; Fuse <span>Data Explorer</span></h1>
+            <p class="hero-description">Explore the synthetic test, calibration, fuse-map, and binning datasets in one place.</p>
+          </div>
+          <div class="hero-chip" aria-hidden="true">
+            <span class="chip-line"></span>
+            <span class="chip-center">AI</span>
+            <span class="chip-caption">DATA<br>INSIGHTS</span>
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Dataset summary">
+          <article class="stat-card">
+            <span class="stat-label">DATASETS</span>
+            <strong id="dataset-count">—</strong>
+            <span class="stat-foot">Available to explore</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">TOTAL RECORDS</span>
+            <strong id="record-count">—</strong>
+            <span class="stat-foot">Across all CSV files</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">SELECTED DATASET</span>
+            <strong id="selected-count">—</strong>
+            <span class="stat-foot">Rows in current view</span>
+          </article>
+          <article class="stat-card stat-card-accent">
+            <span class="stat-label">BASELINE</span>
+            <strong>7 use cases</strong>
+            <span class="stat-foot">Reference model results</span>
+          </article>
+        </section>
+
+        <section class="workspace">
+          <aside class="sidebar">
+            <div class="section-heading">
+              <p class="eyebrow">YOUR WORKSPACE</p>
+              <h2>Datasets</h2>
+            </div>
+            <label class="sr-only" for="dataset-select">Choose a dataset</label>
+            <select id="dataset-select" disabled>
+              <option>Loading datasets…</option>
+            </select>
+            <div id="dataset-list" class="dataset-list" aria-label="Dataset list"></div>
+            <div class="sidebar-note">
+              <span class="note-icon">i</span>
+              <p>All records are synthetic and provided for exploration and model development.</p>
+            </div>
+          </aside>
+
+          <section class="content-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">DATASET PREVIEW</p>
+                <h2 id="table-title">Choose a dataset</h2>
+                <p id="table-description" class="panel-description">Select a dataset to inspect its records.</p>
+              </div>
+              <button id="refresh-button" class="refresh-button" type="button" disabled>
+                <span aria-hidden="true">↻</span> Refresh
+              </button>
+            </div>
+            <div class="table-toolbar">
+              <label class="search-box">
+                <span class="search-icon" aria-hidden="true"></span>
+                <span class="sr-only">Search records</span>
+                <input id="search-input" type="search" placeholder="Search any field…" autocomplete="off" disabled>
+              </label>
+              <span id="result-count" class="result-count"></span>
+            </div>
+            <div id="table-message" class="table-message" role="status" hidden></div>
+            <div class="table-wrap">
+              <table>
+                <thead id="table-head"></thead>
+                <tbody id="table-body"></tbody>
+              </table>
+            </div>
+            <div class="pagination">
+              <span id="page-label" class="page-label">—</span>
+              <div class="page-actions">
+                <button id="previous-button" class="page-button" type="button" disabled>Previous</button>
+                <button id="next-button" class="page-button page-button-next" type="button" disabled>Next</button>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="baseline-panel">
+          <div class="baseline-heading">
+            <div>
+              <p class="eyebrow">MODEL REFERENCE</p>
+              <h2>Baseline results</h2>
+            </div>
+            <span class="baseline-badge">SUPPLIED RESULTS</span>
+          </div>
+          <pre id="baseline-results">Loading baseline results…</pre>
+        </section>
+      </main>
+      <footer>
+        <span>Trim &amp; Fuse Data Explorer</span>
+        <span>Read-only · Synthetic datasets</span>
+      </footer>
+    </div>
+  </body>
+</html>

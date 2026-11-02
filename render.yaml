@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: trim-fuse-api
+    runtime: python
+    plan: free
+    buildCommand: python -m compileall -q backend
+    startCommand: python backend/server.py
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
